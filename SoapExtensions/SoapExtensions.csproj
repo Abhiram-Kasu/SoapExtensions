@@ -4,7 +4,23 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>SoapExtensions</Title>
+    <Authors>SoapDispenser</Authors>
+    <Description>Popular and usefull extension methods</Description>
+    <RepositoryUrl>https://github.com/SoapDispenser/SoapExtensions</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Extensions;Helpers</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoapExtensions", "SoapExtensions\SoapExtensions.csproj", "{F751C45E-960F-4A93-9987-E914A4CFE95D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoapExtensions", "SoapExtensions\SoapExtensions.csproj", "{F751C45E-960F-4A93-9987-E914A4CFE95D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoapExtensions.Tests", "SoapExtensions.Tests\SoapExtensions.Tests.csproj", "{17D88641-EA5E-453A-948D-50B42F3E8466}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F751C45E-960F-4A93-9987-E914A4CFE95D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F751C45E-960F-4A93-9987-E914A4CFE95D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F751C45E-960F-4A93-9987-E914A4CFE95D}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{F751C45E-960F-4A93-9987-E914A4CFE95D}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{F751C45E-960F-4A93-9987-E914A4CFE95D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F751C45E-960F-4A93-9987-E914A4CFE95D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17D88641-EA5E-453A-948D-50B42F3E8466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17D88641-EA5E-453A-948D-50B42F3E8466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17D88641-EA5E-453A-948D-50B42F3E8466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17D88641-EA5E-453A-948D-50B42F3E8466}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

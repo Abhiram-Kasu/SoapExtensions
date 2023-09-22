@@ -1,6 +1,9 @@
 ﻿/// <summary>
 /// Extensions methods for enumerating over ranges and collections
 /// </summary>
+
+using System.Runtime.InteropServices;
+
 namespace SoapExtensions
 {
     public static class EnumerationExtensions
@@ -107,6 +110,27 @@ namespace SoapExtensions
         }
 
         #endregion ForEachRef
+
+        #region FirstRef
+
+        public static ref T FirstRef<T>(this List<T> list, Func<T, bool> predicate)
+        {
+            if (list is null) throw new ArgumentNullException(nameof(list));
+            if (predicate is null) throw new ArgumentNullException(nameof(predicate));
+            var span = CollectionsMarshal.AsSpan(list);
+
+            for (var i = 0; i < span.Length; i++)
+            {
+                if (predicate(span[i]))
+                {
+                    return ref span[i];
+                }
+            }
+
+            throw new Exception();
+        }
+
+        #endregion
     }
 
     public struct CustomIntWithStepSizeEnumerator
