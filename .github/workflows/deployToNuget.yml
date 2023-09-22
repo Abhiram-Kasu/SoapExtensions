@@ -16,7 +16,7 @@ jobs:
 
     env:
       BUILD_CONFIG: 'Release'
-      SOLUTION: 'MySolution.sln'
+      SOLUTION: 'SoapExtensions.sln'
 
     runs-on: ubuntu-latest
 
