@@ -113,7 +113,7 @@ namespace SoapExtensions
 
         #region FirstRef
 
-        public static ref T FirstRef<T>(this List<T> list, Func<T, bool> predicate)
+        public static ref T FirstRef<T>(this List<T> list, Func<T, bool>a predicate)
         {
             if (list is null) throw new ArgumentNullException(nameof(list));
             if (predicate is null) throw new ArgumentNullException(nameof(predicate));
