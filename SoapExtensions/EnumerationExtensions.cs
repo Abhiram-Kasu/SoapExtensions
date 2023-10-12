@@ -127,7 +127,7 @@ namespace SoapExtensions
                 }
             }
 
-            throw new Exception();
+            throw new KeyNotFoundException("No element found");
         }
 
         #endregion
