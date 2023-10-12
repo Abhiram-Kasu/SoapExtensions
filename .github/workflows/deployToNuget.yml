@@ -40,6 +40,16 @@ jobs:
 
     - name: Run tests
       run: dotnet test
+
+    - name: Increment package version
+      if: startsWith(github.ref, 'refs/heads/release') 
+      run: |
+        latest_version=$(grep -oP '(?<=<version>)[^<]+' packages/*.nuspec | sort --version-sort | tail -n 1)
+        major=$(echo $latest_version | cut -d. -f1)
+        minor=$(echo $latest_version | cut -d. -f2) 
+        patch=$(($(echo $latest_version | cut -d. -f3) + 1))
+        new_version="$major.$minor.$patch"
+        sed -i "s/<version>$latest_version<\/version>/<version>$new_version<\/version>/" packages/*.nuspec
       
     - name: Publish
       if: startsWith(github.ref, 'refs/heads/release')
