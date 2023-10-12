@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  create:
+    branches: 
+      - release/**
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+    
+jobs:
+  build:
+
+    env:
+      BUILD_CONFIG: 'Release'
+      SOLUTION: 'SoapExtensions.sln'
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1
+
+    - name: Restore dependencies
+      run: nuget restore $SOLUTION
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 7.0.x
+
+    - name: Build
+      run: dotnet build $SOLUTION --configuration $BUILD_CONFIG --no-restore
+
+    - name: Run tests
+      run: dotnet test
+
+    - name: Increment package version
+      if: startsWith(github.ref, 'refs/heads/release') 
+      run: |
+        latest_version=$(grep -oP '(?<=<version>)[^<]+' packages/*.nuspec | sort --version-sort | tail -n 1)
+        major=$(echo $latest_version | cut -d. -f1)
+        minor=$(echo $latest_version | cut -d. -f2) 
+        patch=$(($(echo $latest_version | cut -d. -f3) + 1))
+        new_version="$major.$minor.$patch"
+        sed -i "s/<version>$latest_version<\/version>/<version>$new_version<\/version>/" packages/*.nuspec
+      
+    - name: Publish
+      if: startsWith(github.ref, 'refs/heads/release')
+      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
