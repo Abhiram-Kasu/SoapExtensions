@@ -3,7 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace SoapExtensions.Tests
 {
-    public class Tests
+    public class EnumerationTests
     {
         [Test]
         public void GetEnumerator_Range_ReturnsCustomEnumerator()
