@@ -7,6 +7,7 @@ This is a class library containing various extension methods for common .NET typ
 - **EnumerationExtensions** - Extension methods for enumerating over ranges and collections
 - **JsonExtensions** - Extension methods for serializing and deserializing JSON
 - **TaskExtensions** - Extension methods for chaining and adding timeout to tasks
+- **Result Type** - Result type with a Standard error and implicit conversions for cleaner syntax
 
 ## Usage
 
@@ -30,6 +31,17 @@ var obj = json.To<User>();
 var user = new User();
 
 var json = user.ToJson();
+
+
+var result = await Task.Run(() => //do some work
+                            ).Then(x => //do some more work with the previous result
+                            );
+
+Result<int,StandardError> Example(bool condition)
+{
+    return condition ? 20 : new StandardError("Condition was false");
+}
+
 ```
 
 See the XML documentation in the source files for specifics on each method. 
