@@ -103,5 +103,31 @@ namespace SoapExtensions.Tests
 
             Assert.That(list, Is.EquivalentTo(new[] { 1, 20, 3 }));
         }
+        [Test]
+        public void RemoveWhere_RemovesCorrectItems()
+        {
+            var list = new List<int> { 1, 2, 3, 4, 5 };
+            list.RemoveWhere(i => i % 2 == 0); // Remove even numbers
+
+            Assert.That(list, Is.EquivalentTo(new List<int> { 1, 3, 5 }));
+        }
+
+        [Test]
+        public void RemoveWhere_RemovesNoItemsWhenPredicateIsFalse()
+        {
+            var list = new List<int> { 1, 2, 3, 4, 5 };
+            list.RemoveWhere(i => false); // No items should be removed
+
+            Assert.That(list, Is.EquivalentTo(new List<int> { 1, 2, 3, 4, 5 }));
+        }
+
+        [Test]
+        public void RemoveWhere_RemovesAllItemsWhenPredicateIsTrue()
+        {
+            var list = new List<int> { 1, 2, 3, 4, 5 };
+            list.RemoveWhere(i => true); // All items should be removed
+
+            Assert.That(list, Is.Empty);
+        }
     }
 }
